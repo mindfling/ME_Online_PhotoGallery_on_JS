@@ -26,7 +26,8 @@ body {
   margin: 0;
   padding-top: 70px; 
   padding-bottom: 80px;
-  background: dimgrey;
+  /* background: dimgrey; */
+  background: darkgrey;
 }
 
 .container {
@@ -43,8 +44,14 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
   /* background-color: #c0f0f0; */
-  background: #a2a2a2b8;
+  background-color: #8d8d8db8;
+  opacity: .8;
   z-index: 10;
+  transition: opacity 500ms ease;
+}
+.header:hover {
+  background-color: #8d8d8d;
+  opacity: 1;
 }
 
 .header__container {

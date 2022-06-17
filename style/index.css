@@ -21,7 +21,12 @@ ul {
 }
 
 body {
+  font-family: sans-serif;
+  color: wheat;
   margin: 0;
+  padding-top: 70px; 
+  padding-bottom: 80px;
+  background: dimgrey;
 }
 
 .container {
@@ -37,7 +42,8 @@ body {
   width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #c0f0f0;
+  /* background-color: #c0f0f0; */
+  background: #a2a2a2b8;
   z-index: 10;
 }
 
@@ -47,7 +53,6 @@ body {
 }
 
 .header__login-button {
-  display: block;
   padding: 0;
   border: none;
   cursor: pointer;
@@ -63,17 +68,43 @@ body {
   display: block;
 }
 
+.header__logo,
+.header__login-button {
+  display: block;
+  opacity: .5;
+  transition: opacity 300ms ease-out;
+}
+
+.header__login-button:hover,
+.header__logo:hover {
+  opacity: 1;
+}
+
 .main {
   padding-top: 62px;
 }
 
 .grid {
+  /* border: 1px solid orange; */
   margin: 0 auto;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 30px;
 }
 
 .card {
   position: relative;
   margin-bottom: 10px;
+  min-height: 100px; /* ? */
+  min-width: 200px;
+  transition: transform 300ms ease-in;
+  /* border: 1px solid orange; */
+}
+.card:hover {
+  transform: scale(1.1);
 }
 
 .card__author {
@@ -82,7 +113,10 @@ body {
   top: 5px;
   left: 5px;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  /* transition: (opacity, transform) 0.3s ease-in-out; */
+  transition-property: opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -92,16 +126,20 @@ body {
   right: 5px;
   bottom: 5px;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-
+  transition-property: opacity, transform;
+  transition-duration: 300ms, 400ms;
+  transition-timing-function: ease, ease;
+  /* transition: opacity 1.9s ease-in-out; */
+  /* transition: transform 100ms ease; */
   border-radius: 50%;
 }
+
 
 .card__download,
 .photo__download {
   background-color: rgba(0, 0, 0, 0.3);
   background-image: url('../img/download.svg');
-  background-size: 20px;
+  background-size: 15px;
   background-position: center;
   background-repeat: no-repeat;
   display: block;
@@ -111,7 +149,17 @@ body {
 
 .card:hover .card__author,
 .card:hover .card__download {
+  opacity: 0.9;
+}
+
+.card__author:hover {
   opacity: 1;
+  transform: scale(112%);
+}
+.card__download:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+  transform: scale(112%);
 }
 
 .photo {
@@ -123,9 +171,7 @@ body {
   width: max-content;
   display: grid;
   max-width: 100%;
-  grid-template-areas:
-    'photo photo'
-    'author controls';
+  grid-template-areas: 'photo photo' 'author controls';
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
@@ -152,15 +198,13 @@ body {
   gap: 15px;
 }
 
-.card__photo-like_user {
-
-}
+.card__photo-like_user {}
 
 .card__photo-like {
   position: absolute;
   left: 5px;
   bottom: 5px;
-background-color: transparent;
+  background-color: transparent;
   background-image: url('../img/like.svg');
   background-size: contain;
   background-position: center;
@@ -170,7 +214,16 @@ background-color: transparent;
   border: none;
   color: #fff;
   line-height: 1;
-  padding: 5px 10px 0;
+  padding: 2px 10px 0;
+  font-size: 11px;
+  transition: transform 200ms ease;
+}
+
+.card__photo-like:hover {
+  transform: scale(1.2);
+}
+.card__photo-like:active {
+  transform: scale(1.1);
 }
 
 .photo__like {
@@ -192,11 +245,7 @@ background-color: transparent;
 
 @media (max-width: 480px) {
   .photo__wrapper {
-   
     grid-template-columns: 1fr;
-    grid-template-areas:
-      'photo'
-      'controls'
-      'author';
+    grid-template-areas: 'photo' 'controls' 'author';
   }
 }
